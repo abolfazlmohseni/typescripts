@@ -1,5 +1,5 @@
 let num = 12 as const
-
+let num2 = <Const> 12
 // let = 13
 
 const numbers = [34,43] as const

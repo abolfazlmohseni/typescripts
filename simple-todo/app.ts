@@ -4,7 +4,7 @@ const list = document.getElementById("todo-list") as HTMLUListElement;
 
 type Task = string;
 
-const STORAGE_KEY = "todoTasks";
+const STORAGE_KEY:string = "todoTasks";
 
 function loadTasks(): Task[] {
     const stored = localStorage.getItem(STORAGE_KEY);

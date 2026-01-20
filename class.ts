@@ -14,5 +14,15 @@ class Person {
 }
 
 const abolfazl = new Person("abolfazl", "mohseni", 9940564287, 17)
+const mohamad = new Person("mohamad","hasani",9965643245,23)
+// console.log(abolfazl);
 
-console.log(abolfazl);
+
+// const testPerson :Person = abolfazl
+// console.log(testPerson);
+
+// const testPerson: Person = { name: "abolfazl", lastname: "mohseni", phone: 9940564287, age: 17 }
+// console.log(testPerson);
+
+const testPersons:Person[] = [abolfazl,mohamad]
+console.log(testPersons);

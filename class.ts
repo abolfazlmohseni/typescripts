@@ -1,11 +1,16 @@
 class Person {
 
-    name: string
-    lastname: string
-    phone: number
-    age: number
+    // name: string
+    // lastname: string
+    // phone: number
+    // age: number
 
-    constructor(name: string, lastname: string, phone: number, age: number) {
+    constructor(
+        public name: string,
+        readonly lastname: string
+        , protected phone: number,
+        private age: number
+    ) {
         this.name = name
         this.lastname = lastname
         this.phone = phone

@@ -9,9 +9,27 @@ interface Todo {
     isComplate: boolean;
 }
 
-const todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]")
+let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]")
 
-const addtodoHandler = (event: Event) => {
+addTodo.addEventListener("click", (event) => submitHandler(event))
+
+todoValue.addEventListener("keypress", (event => {
+    if (event.code === "Enter") {
+        addtodoHandler(event)
+    }
+}))
+
+clearTodo.addEventListener("click", () => {
+    localStorage.clear()
+    todoList.innerHTML = ""
+})
+
+
+window.addEventListener("DOMContentLoaded", () => {
+    renderTodo()
+})
+
+const submitHandler = (event: Event) => {
 
     event.preventDefault();
 
@@ -28,10 +46,9 @@ const addtodoHandler = (event: Event) => {
     addTodoInLocalStoreg()
 }
 
-
 const addTodoToDom = (todo: Todo) => {
     todoList.insertAdjacentHTML("beforeend", ` 
-        <li>
+        <li onclick='removeTodo("${todo.id}")'>
           ${todo.title}<span class="icon"><i class="fas fa-trash"></i></span>
         </li>`)
 }
@@ -42,21 +59,13 @@ const addTodoInLocalStoreg = () => {
 
 }
 
-
-addTodo.addEventListener("click", (event) => addtodoHandler(event))
-todoValue.addEventListener("keypress", (event => {
-    if (event.code === "Enter") {
-        addtodoHandler(event)
-    }
-}))
-clearTodo.addEventListener("click", () => {
-    localStorage.clear()
+const removeTodo = (id: string) => {
+    todos = todos.filter(todo => todo.id !== id)
+    addTodoInLocalStoreg()
     todoList.innerHTML = ""
-})
+    renderTodo()
+}
 
-
-window.addEventListener("DOMContentLoaded", () => {
-    todos.forEach(todo => {
-        addTodoToDom(todo)
-    })
-})
+const renderTodo = () => {
+    todos.forEach(todo => addTodoToDom(todo))
+}
